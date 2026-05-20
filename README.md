@@ -1,2 +1,91 @@
-# applied-ml-player-feedback
-Udacity Capstone - Applied Machine Learning: Model Design, Training, and Performance Evaluation
+# Machine Learning Classification of Player Feedback from Steam Reviews
+
+Udacity AI Masters Capstone - Project 3: Applied Machine Learning
+
+**Student:** Robert Mayfield
+**Series:** AI Game Director Studio (Project 3 of 7)
+
+---
+
+## Project Description
+
+This project builds a supervised machine learning classifier that predicts whether a Steam game review is positive or negative. It forms the player feedback intelligence module of the AI Game Director Studio capstone series, converting unstructured review text into structured reception signals for downstream use in Project 7.
+
+The workflow covers dataset loading and inspection, text preprocessing, TF-IDF vectorization, model training and selection, evaluation with classification metrics, error analysis, and discussion of limitations and responsible use.
+
+---
+
+## Dataset
+
+**Name:** Steam Reviews Dataset
+**Source:** Kaggle - forgemaster/steam-reviews-dataset
+**Format:** CSV
+**Target variable:** `voted_up` (binary: positive or negative recommendation)
+**Size:** ~5.32 GB across 11 CSV files (15,437,471 reviews)
+
+See `dataset_access_instructions.md` for full download instructions.
+
+---
+
+## Files Included
+
+```
+notebooks/modeling.ipynb                — main project notebook
+Machine_Learning_Analysis_Report.pdf    — full written analysis report
+module_summary.pdf                      — identical copy of report
+requirements.txt                        — pinned Python dependencies
+dataset_access_instructions.md          — dataset source and download steps
+data/sample/                            — small sample for quick review
+outputs/figures/                        — saved chart files
+outputs/tables/model_metrics.csv        — evaluation metrics summary
+outputs/model_artifacts/                — saved model and vectorizer for Project 7
+```
+
+---
+
+## How to Run
+
+1. Create and activate a Python environment:
+   ```
+   python -m venv .venv
+   .venv\Scripts\activate
+   ```
+2. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Open the notebook in Jupyter:
+   ```
+   jupyter notebook notebooks/modeling.ipynb
+   ```
+4. Run all cells from top to bottom.
+
+---
+
+## Bias and Responsible Data Handling
+
+Steam reviews skew toward English-language PC gaming demographics and toward games with large user bases. The dataset is class-imbalanced (approximately 85% positive). Class weighting is applied during training to mitigate this. The classifier is designed as an advisory signal and should not be used for automated decision-making without human oversight.
+
+---
+
+## Future Integration Reflection
+
+### How this classifier could support the AI Game Director Studio
+
+The trained classifier converts raw review text into positive/negative reception signals that the AI Game Director can use to surface games receiving unexpected negative feedback or to segment player sentiment over time.
+
+### How this dataset and model would need to evolve for deeper integration
+
+The model is trained on post-launch consumer reviews. For pre-launch playtester applications it would need fine-tuning on labeled playtester feedback, which does not currently exist in a public form.
+
+### How agentic automation could assist this workflow
+
+An agentic pipeline could automate review scraping, batch classification, trend aggregation, and anomaly surfacing on a scheduled basis, feeding structured sentiment signals directly into the Game Director system.
+
+---
+
+## Requirements
+
+See `requirements.txt` for the full pinned dependency list.
+
+Key libraries: Python 3.9+, pandas, numpy, scikit-learn, matplotlib, seaborn, jupyter

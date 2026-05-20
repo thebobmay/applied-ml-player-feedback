@@ -1,0 +1,16 @@
+__pycache__/
+.ipynb_checkpoints/
+.env
+.venv/
+venv/
+*.pyc
+.DS_Store
+
+# Large raw data — use dataset_access_instructions.md instead
+data/raw/
+
+# Processed sample is reproducible by re-running the sampling cell
+data/processed/
+
+# Compiled model artifacts (keep .pkl for Project 7 integration)
+outputs/model_artifacts/*.pt
