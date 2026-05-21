@@ -11,8 +11,6 @@ Udacity AI Masters Capstone - Project 3: Applied Machine Learning
 
 This project builds a supervised machine learning classifier that predicts whether a Steam game review is positive or negative. The primary intended application is playtesting support: automatically classifying written player feedback to help development teams identify negative reception signals without manually reviewing every response.
 
-It also forms the player feedback intelligence module of the AI Game Director Studio capstone series, converting unstructured review text into structured reception signals for downstream use in Project 7.
-
 The workflow covers dataset loading and inspection, text preprocessing, TF-IDF vectorization, model training and selection, evaluation with classification metrics, error analysis, and discussion of limitations and responsible use.
 
 ---
@@ -37,6 +35,9 @@ Machine_Learning_Analysis_Report.pdf     full written analysis report
 module_summary.pdf                       identical copy of report
 requirements.txt                         pinned Python dependencies
 dataset_access_instructions.md           dataset source and download steps
+src/preprocessing.py                     text cleaning and TF-IDF vectorization functions
+src/evaluation.py                        model evaluation function
+src/inspection.py                        dataframe inspection utility
 data/sample/                             small sample for quick review
 outputs/figures/                         saved chart files
 outputs/tables/model_metrics.csv         evaluation metrics summary
