@@ -67,7 +67,7 @@ outputs/model_artifacts/                 saved model and vectorizer for Project 
 
 ## Bias and Responsible Data Handling
 
-Steam reviews skew toward English-language PC gaming demographics and toward games with large user bases. The dataset is class-imbalanced (approximately 85% positive). Class weighting is applied during training to mitigate this. The classifier is designed as an advisory signal and should not be used for automated decision-making without human oversight.
+Steam reviews skew toward English language PC gaming demographics and toward games with large user bases. The dataset is class imbalanced (approximately 85% positive). Class weighting is applied during training to mitigate this. The classifier is designed as an advisory signal and should not be used for automated decision-making without human oversight.
 
 ---
 
@@ -79,7 +79,7 @@ The trained classifier converts raw review text into positive/negative reception
 
 ### How this dataset and model would need to evolve for deeper integration
 
-The model is trained on post launch consumer reviews from a general Steam audience. For playtester applications it would need fine-tuning on labeled playtester feedback collected during closed or internal testing phases, which does not currently exist in a public form. Playtester language, focus areas, and feedback style differ meaningfully from public consumer reviews.
+The model is trained on post launch consumer reviews from a general Steam audience. For playtester applications it would need fine tuning on labeled playtester feedback collected during closed or internal testing phases, which does not currently exist in a public form. Playtester language, focus areas, and feedback style differ meaningfully from public consumer reviews.
 
 ### How agentic automation could assist this workflow
 
