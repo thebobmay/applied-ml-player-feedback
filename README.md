@@ -9,7 +9,9 @@ Udacity AI Masters Capstone - Project 3: Applied Machine Learning
 
 ## Project Description
 
-This project builds a supervised machine learning classifier that predicts whether a Steam game review is positive or negative. It forms the player feedback intelligence module of the AI Game Director Studio capstone series, converting unstructured review text into structured reception signals for downstream use in Project 7.
+This project builds a supervised machine learning classifier that predicts whether a Steam game review is positive or negative. The primary intended application is playtesting support: automatically classifying written player feedback to help development teams identify negative reception signals without manually reviewing every response.
+
+It also forms the player feedback intelligence module of the AI Game Director Studio capstone series, converting unstructured review text into structured reception signals for downstream use in Project 7.
 
 The workflow covers dataset loading and inspection, text preprocessing, TF-IDF vectorization, model training and selection, evaluation with classification metrics, error analysis, and discussion of limitations and responsible use.
 
@@ -30,15 +32,15 @@ See `dataset_access_instructions.md` for full download instructions.
 ## Files Included
 
 ```
-notebooks/modeling.ipynb                — main project notebook
-Machine_Learning_Analysis_Report.pdf    — full written analysis report
-module_summary.pdf                      — identical copy of report
-requirements.txt                        — pinned Python dependencies
-dataset_access_instructions.md          — dataset source and download steps
-data/sample/                            — small sample for quick review
-outputs/figures/                        — saved chart files
-outputs/tables/model_metrics.csv        — evaluation metrics summary
-outputs/model_artifacts/                — saved model and vectorizer for Project 7
+notebooks/modeling.ipynb                 main project notebook
+Machine_Learning_Analysis_Report.pdf     full written analysis report
+module_summary.pdf                       identical copy of report
+requirements.txt                         pinned Python dependencies
+dataset_access_instructions.md           dataset source and download steps
+data/sample/                             small sample for quick review
+outputs/figures/                         saved chart files
+outputs/tables/model_metrics.csv         evaluation metrics summary
+outputs/model_artifacts/                 saved model and vectorizer for Project 7
 ```
 
 ---
@@ -72,11 +74,11 @@ Steam reviews skew toward English-language PC gaming demographics and toward gam
 
 ### How this classifier could support the AI Game Director Studio
 
-The trained classifier converts raw review text into positive/negative reception signals that the AI Game Director can use to surface games receiving unexpected negative feedback or to segment player sentiment over time.
+The trained classifier converts raw review text into positive/negative reception signals that the AI Game Director can use to surface games receiving unexpected negative feedback, segment player sentiment over time, and flag issues emerging from playtester written responses without requiring manual review at scale.
 
 ### How this dataset and model would need to evolve for deeper integration
 
-The model is trained on post-launch consumer reviews. For pre-launch playtester applications it would need fine-tuning on labeled playtester feedback, which does not currently exist in a public form.
+The model is trained on post launch consumer reviews from a general Steam audience. For playtester applications it would need fine-tuning on labeled playtester feedback collected during closed or internal testing phases, which does not currently exist in a public form. Playtester language, focus areas, and feedback style differ meaningfully from public consumer reviews.
 
 ### How agentic automation could assist this workflow
 
