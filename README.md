@@ -57,11 +57,12 @@ outputs/model_artifacts/                 saved model and vectorizer for Project 
    ```
    pip install -r requirements.txt
    ```
-3. Open the notebook in Jupyter:
+3. Download the Steam Reviews Dataset from Kaggle (see `dataset_access_instructions.md`) and place the archive or extracted CSV files into `data/raw/`.
+4. Open the notebook in Jupyter:
    ```
    jupyter notebook notebooks/modeling.ipynb
    ```
-4. Run all cells from top to bottom.
+5. Run all cells from top to bottom.
 
 ---
 
