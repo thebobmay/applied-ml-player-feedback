@@ -65,10 +65,11 @@ Total size: approximately 5.32 GB
    ```
    kaggle datasets download -d forgemaster/steam-reviews-dataset
    ```
-4. Extract the zip and place all 11 CSV files into:
+4. Place the downloaded `archive.zip` file (do not extract it) into:
    ```
    data/raw/
    ```
+   The notebook reads the archive directly and extracts files automatically on first run.
 
 ---
 

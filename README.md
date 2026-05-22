@@ -48,16 +48,24 @@ outputs/model_artifacts/                 saved model and vectorizer for Project 
 
 ## How to Run
 
-1. Create and activate a Python environment:
+1. Create and activate a Python environment (Python 3.13.3 was used for this project):
    ```
    python -m venv .venv
+   ```
+   On Windows:
+   ```
    .venv\Scripts\activate
+   ```
+   On macOS or Linux:
+   ```
+   source .venv/bin/activate
    ```
 2. Install dependencies:
    ```
    pip install -r requirements.txt
    ```
-3. Download the Steam Reviews Dataset from Kaggle (see `dataset_access_instructions.md`) and place the archive or extracted CSV files into `data/raw/`.
+   Note: `aif360` (IBM AI Fairness 360) is used for fairness evaluation and installs via pip without additional configuration for the metrics used in this project.
+3. Download the Steam Reviews Dataset from Kaggle (see `dataset_access_instructions.md`) and place the `archive.zip` file (do not extract it) into `data/raw/`. The notebook reads the archive directly.
 4. Open the notebook in Jupyter:
    ```
    jupyter notebook notebooks/modeling.ipynb
@@ -92,4 +100,4 @@ An agentic pipeline could automate review scraping, batch classification, trend 
 
 See `requirements.txt` for the full pinned dependency list.
 
-Key libraries: Python 3.9+, pandas, numpy, scikit-learn, matplotlib, seaborn, jupyter
+Key libraries: Python 3.13.3, pandas, numpy, scikit-learn, matplotlib, aif360, jupyter

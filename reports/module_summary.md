@@ -142,7 +142,7 @@ Error rate generally increased with review length, from 8.2% for reviews of 3 to
 
 **Bag of words representation.** The TF-IDF model treats each review as an unordered set of token frequencies. It has no awareness of sentence structure, negation, word order, or context. A sentence like "not bad at all" is represented by the same feature weights as "bad at all not." The error analysis in Section 10 of the notebook demonstrates the practical impact of this limitation: reviews with negative openings and positive conclusions, and reviews that use ironic or sarcastic phrasing, are the dominant failure modes.
 
-**Test set used for model selection.** Model selection compared four classifiers on the held-out test set; strictly, cross-validation on the training set should be used for model selection to preserve the held-out guarantee (Hastie, Tibshirani, & Friedman, 2009). The reported test set metrics should therefore be interpreted as slightly optimistic estimates of generalization performance.
+**Test set used for model selection.** Model selection compared four classifiers on the held-out test set; strictly, cross-validation on the training set should be used for model selection to preserve the held-out guarantee (Hastie et al., 2009). The reported test set metrics should therefore be interpreted as slightly optimistic estimates of generalization performance.
 
 **Language coverage.** The model was trained on English language text. Non English characters were stripped during preprocessing. Predictions on non English reviews should not be trusted, as the preprocessing pipeline removes most of the signal from non-ASCII text.
 
@@ -158,7 +158,7 @@ This classifier is designed as an advisory signal and should not be used as the 
 
 The class balanced weighting applied during training was the primary mitigation step taken to reduce bias. It prevents the model from learning to predict positive by default and was confirmed to contribute to near equal true positive recovery rates across the short and long review subgroups (equal opportunity difference of +0.0133, within the accepted threshold of 0.1).
 
-Post training fairness evaluation using the IBM AIF360 toolkit (Bellamy et al., 2019) measured prediction fairness across review length subgroups (short: 3 to 24 words; long: 25 or more words). All four metrics fell within commonly accepted thresholds:
+Post training fairness evaluation using the IBM AIF360 toolkit (Bellamy et al., 2019) measured prediction fairness across review length subgroups (short: 3 to 24 words; long: 25 or more words). Long reviews are treated as the privileged group and short reviews as the unprivileged group; here "privileged" refers to the group whose reviews are classified more reliably, not the group receiving more favorable predictions. All four metrics fell within commonly accepted thresholds:
 
 
 | Metric                        | Value   | Threshold   |
