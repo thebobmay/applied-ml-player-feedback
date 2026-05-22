@@ -30,9 +30,9 @@ See `dataset_access_instructions.md` for full download instructions.
 ## Files Included
 
 ```
-notebooks/modeling.ipynb                 main project notebook
-Machine_Learning_Analysis_Report.pdf     full written analysis report
-module_summary.pdf                       identical copy of report
+notebooks/modeling.ipynb                         main project notebook
+reports/Machine_Learning_Analysis_Report.pdf     full written analysis report
+reports/module_summary.pdf                       identical copy of report
 requirements.txt                         pinned Python dependencies
 dataset_access_instructions.md           dataset source and download steps
 src/preprocessing.py                     text cleaning and TF-IDF vectorization functions

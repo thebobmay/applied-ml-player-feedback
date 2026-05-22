@@ -59,13 +59,13 @@ Four candidate models were trained and compared on the same 80/20 stratified tra
 
 | Model               | Accuracy | Precision (macro) | Recall (macro) | F1 (macro) | Training Time |
 | ------------------- | -------- | ----------------- | -------------- | ---------- | ------------- |
-| Linear SVM          | 0.9059   | 0.8064            | 0.8470         | **0.8245** | 1.92s         |
-| Logistic Regression | 0.8936   | 0.7847            | 0.8717         | 0.8175     | 0.79s         |
-| Complement NB       | 0.8889   | 0.7764            | 0.8230         | 0.7965     | 0.03s         |
-| Multinomial NB      | 0.8789   | 0.8847            | 0.5995         | 0.6322     | 0.03s         |
+| Linear SVM          | 0.9059   | 0.8064            | 0.8470         | **0.8245** | 1.917s        |
+| Logistic Regression | 0.8936   | 0.7847            | 0.8717         | 0.8175     | 0.792s        |
+| Complement NB       | 0.8889   | 0.7764            | 0.8230         | 0.7965     | 0.027s        |
+| Multinomial NB      | 0.8789   | 0.8847            | 0.5995         | 0.6322     | 0.031s        |
 
 
-**Metric justification.** Macro F1 score is the primary selection criterion because it computes the unweighted average of per class F1 scores, treating both the positive class and the minority negative class as equally important (Sokolova and Lapalme, 2009). Given the 5.8:1 class imbalance in this dataset, accuracy alone would reward a model for correctly predicting the majority class while ignoring failures on the negative class. Macro F1 prevents this by requiring the model to perform well on both classes to achieve a high score. Multinomial NB illustrates this failure mode directly: it achieved 87.9% accuracy but only 0.6322 macro F1, reflecting extremely low recall (0.600) on the negative class.
+**Metric justification.** Macro F1 score is the primary selection criterion because it computes the unweighted average of per class F1 scores, treating both the positive class and the minority negative class as equally important (Sokolova & Lapalme, 2009). Given the 5.8:1 class imbalance in this dataset, accuracy alone would reward a model for correctly predicting the majority class while ignoring failures on the negative class. Macro F1 prevents this by requiring the model to perform well on both classes to achieve a high score. Multinomial NB illustrates this failure mode directly: it achieved 87.9% accuracy but only 0.6322 macro F1, reflecting extremely low recall (0.600) on the negative class.
 
 **Selected model: Linear SVM (C=1.0, class_weight='balanced').** Linear SVM achieved the highest macro F1 (0.8245) and the highest accuracy (90.59%) across all four candidates. Class balanced weighting was applied to both Linear SVM and Logistic Regression, which rescales each class's contribution to the loss function in inverse proportion to its frequency, counteracting the effect of the imbalance during training.
 
@@ -93,11 +93,11 @@ The final model is Linear SVM with C=1.0, class balanced weighting, and TF-IDF f
 
 | Class        | Precision | Recall | F1    |
 | ------------ | --------- | ------ | ----- |
-| Negative (0) | 0.711     | 0.762  | 0.736 |
-| Positive (1) | 0.902     | 0.932  | 0.917 |
+| Negative (0) | 0.655     | 0.764  | 0.705 |
+| Positive (1) | 0.958     | 0.930  | 0.944 |
 
 
-The model performs substantially better on the positive class, which has six times as many training examples. Negative recall of 0.762 means the model correctly identifies 76.2% of actual negative reviews. The remaining 23.8% of negative reviews are misclassified as positive, representing the primary failure mode.
+The model performs substantially better on the positive class, which has roughly 5.8 times as many training examples. Negative recall of 0.764 means the model correctly identifies 76.4% of actual negative reviews. The remaining 23.6% of negative reviews are misclassified as positive, representing the primary failure mode.
 
 **Confusion matrix (test set):**
 
@@ -130,7 +130,7 @@ The model works best on reviews of moderate length with clear, direct language. 
 
 The model made 1,540 errors on the 16,361 row test set, for an overall error rate of 9.4%. False negatives (970) outnumbered false positives (570) by nearly 2:1.
 
-Error rate increased with review length, from 8.2% for reviews of 3 to 9 words up to 13.1% for reviews of 200 or more words. Errors averaged 71.5 words versus 54.3 words for correctly classified reviews. This pattern reflects a structural limitation of bag of words modeling: longer reviews tend to contain more nuanced or mixed language, and aggregating token frequencies cannot resolve contradictions within a single document.
+Error rate generally increased with review length, from 8.2% for reviews of 3 to 9 words up to 13.1% for reviews of 200 or more words. Errors averaged 71.5 words versus 54.3 words for correctly classified reviews. This pattern reflects a structural limitation of bag of words modeling: longer reviews tend to contain more nuanced or mixed language, and aggregating token frequencies cannot resolve contradictions within a single document.
 
 **False positive patterns (negative reviews predicted positive).** Two recurring patterns appeared in the false positive sample. The first is negative framing used in service of a positive judgment: reviews such as "This review may not be positive, but..." contain strong negative surface tokens that outweigh the author's concluding sentiment. The second is short, colloquial reviews where tone cannot be recovered from token frequencies alone, for example "I got bored sooo not gud game," where "gud game" carries positive weight and overpowers the negative framing.
 
