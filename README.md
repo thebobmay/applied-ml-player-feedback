@@ -49,27 +49,21 @@ outputs/model_artifacts/                 saved model and vectorizer for Project 
 ## How to Run
 
 1. Create and activate a Python environment (Python 3.13.3 was used for this project):
-   ```
+  ```
    python -m venv .venv
-   ```
+  ```
    On Windows:
-   ```
-   .venv\Scripts\activate
-   ```
    On macOS or Linux:
-   ```
-   source .venv/bin/activate
-   ```
 2. Install dependencies:
-   ```
+  ```
    pip install -r requirements.txt
-   ```
+  ```
    Note: `aif360` (IBM AI Fairness 360) is used for fairness evaluation and installs via pip without additional configuration for the metrics used in this project.
-3. Download the Steam Reviews Dataset from Kaggle (see `dataset_access_instructions.md`) and place the `archive.zip` file (do not extract it) into `data/raw/`. The notebook reads the archive directly.
+3. Download the Steam Reviews Dataset from Kaggle (see `dataset_access_instructions.md`) and place the `archive.zip` file (do not extract it) into `data/raw/`. The notebook reads the archive directly.  See dataset_access_instructions.md for more details.
 4. Open the notebook in Jupyter:
-   ```
+  ```
    jupyter notebook notebooks/modeling.ipynb
-   ```
+  ```
 5. Run all cells from top to bottom.
 
 ---
