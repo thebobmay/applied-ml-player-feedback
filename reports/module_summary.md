@@ -169,7 +169,7 @@ The statistical parity difference of +0.0866 reflects the underlying label distr
 
 ---
 
-## Future Integration with AI Game Director Studio
+## Future Integrations
 
 The trained classifier and TF-IDF vectorizer are saved as reusable artifacts (`review_classifier.pkl`, `tfidf_vectorizer.pkl`, `label_mapping.json`). Any system that can pass review text to the model can receive a binary sentiment signal without retraining.
 
