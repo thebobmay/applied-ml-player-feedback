@@ -1,5 +1,5 @@
 model,accuracy,precision_macro,recall_macro,f1_macro,training_time_s
-Linear SVM,0.9059,0.8064,0.847,0.8245,1.917
-Logistic Regression,0.8936,0.7847,0.8717,0.8175,0.792
-Complement NB,0.8889,0.7764,0.823,0.7965,0.027
-Multinomial NB,0.8789,0.8847,0.5995,0.6322,0.031
+Linear SVM,0.9059,0.8064,0.847,0.8245,1.869
+Logistic Regression,0.8936,0.7847,0.8717,0.8175,0.742
+Complement NB,0.8889,0.7764,0.823,0.7965,0.032
+Multinomial NB,0.8789,0.8847,0.5995,0.6322,0.033
