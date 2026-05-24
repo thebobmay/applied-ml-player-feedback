@@ -1,17 +1,13 @@
 # Machine Learning Classification of Player Feedback from Steam Reviews
 
 **Student:** Robert Mayfield
-**Project:** Udacity AI Masters Capstone — Applied Machine Learning
+**Project:** Udacity AI Masters Capstone: Applied Machine Learning
 
 ---
 
 ## Overview
 
-This project trains and evaluates a supervised binary text classifier that predicts whether a player review reflects a positive or negative experience. The classifier takes raw review text as input and produces a single binary output: positive (1) or negative (0). The primary intended application is playtesting feedback analysis during game development, where teams receive large volumes of written tester responses and need a reliable automated first pass to surface negative signals before manual review.
-
-The training data is the Steam Reviews Dataset (forgemaster, 2021), a publicly available collection of 15,437,471 player reviews labeled with a binary recommendation signal (`voted_up`), available at https://www.kaggle.com/datasets/forgemaster/steam-reviews-dataset. Because Steam reviews represent the largest public source of labeled player generated text in natural language, they provide a strong proxy for training a general purpose player feedback classifier, even though playtesting notes differ in register and specificity from consumer reviews.
-
-The workflow covers data loading, quality review, text preprocessing, TF-IDF feature extraction, comparative evaluation of four candidate classifiers, hyperparameter tuning, error analysis, and post-training fairness evaluation using the IBM AIF360 toolkit. The trained classifier and vectorizer are saved as reusable artifacts for integration into downstream pipelines.
+This project trains and evaluates a supervised binary text classifier to predict whether a Steam game review reflects a positive or negative player experience, using TF-IDF features and the reviewer-applied `voted_up` label from the Steam Reviews Dataset (forgemaster, 2021). Four candidate classifiers were compared on the same feature representation; Linear SVM with class-balanced weighting was selected based on the highest macro F1 score across both the majority positive class and the minority negative class. The trained classifier and TF-IDF vectorizer are saved as reusable artifacts for downstream integration.
 
 ---
 
@@ -59,10 +55,10 @@ Four candidate models were trained and compared on the same 80/20 stratified tra
 
 | Model               | Accuracy | Precision (macro) | Recall (macro) | F1 (macro) | Training Time |
 | ------------------- | -------- | ----------------- | -------------- | ---------- | ------------- |
-| Linear SVM          | 0.9059   | 0.8064            | 0.8470         | **0.8245** | 1.917s        |
-| Logistic Regression | 0.8936   | 0.7847            | 0.8717         | 0.8175     | 0.792s        |
-| Complement NB       | 0.8889   | 0.7764            | 0.8230         | 0.7965     | 0.027s        |
-| Multinomial NB      | 0.8789   | 0.8847            | 0.5995         | 0.6322     | 0.031s        |
+| Linear SVM          | 0.9059   | 0.8064            | 0.8470         | **0.8245** | 1.87s         |
+| Logistic Regression | 0.8936   | 0.7847            | 0.8717         | 0.8175     | 0.74s         |
+| Complement NB       | 0.8889   | 0.7764            | 0.8230         | 0.7965     | 0.03s         |
+| Multinomial NB      | 0.8789   | 0.8847            | 0.5995         | 0.6322     | 0.03s         |
 
 
 **Metric justification.** Macro F1 score is the primary selection criterion because it computes the unweighted average of per class F1 scores, treating both the positive class and the minority negative class as equally important (Sokolova & Lapalme, 2009). Given the 5.8:1 class imbalance in this dataset, accuracy alone would reward a model for correctly predicting the majority class while ignoring failures on the negative class. Macro F1 prevents this by requiring the model to perform well on both classes to achieve a high score. Multinomial NB illustrates this failure mode directly: it achieved 87.9% accuracy but only 0.6322 macro F1, reflecting extremely low recall (0.600) on the negative class.
@@ -140,7 +136,7 @@ Error rate generally increased with review length, from 8.2% for reviews of 3 to
 
 ## Limitations and Potential Bias
 
-**Bag of words representation.** The TF-IDF model treats each review as an unordered set of token frequencies. It has no awareness of sentence structure, negation, word order, or context. A sentence like "not bad at all" is represented by the same feature weights as "bad at all not." The error analysis in Section 10 of the notebook demonstrates the practical impact of this limitation: reviews with negative openings and positive conclusions, and reviews that use ironic or sarcastic phrasing, are the dominant failure modes.
+**Bag of words representation.** The TF-IDF model treats each review as an unordered set of token frequencies, with no awareness of sentence structure, negation, word order, or context (Manning et al., 2008). A sentence like "not bad at all" is represented by the same feature weights as "bad at all not." The error analysis in Section 10 of the notebook demonstrates the practical impact of this limitation: reviews with negative openings and positive conclusions, and reviews that use ironic or sarcastic phrasing, are the dominant failure modes.
 
 **Test set used for model selection.** Model selection compared four classifiers on the held-out test set; strictly, cross-validation on the training set should be used for model selection to preserve the held-out guarantee (Hastie et al., 2009). The reported test set metrics should therefore be interpreted as slightly optimistic estimates of generalization performance.
 
@@ -173,7 +169,7 @@ The statistical parity difference of +0.0866 reflects the underlying label distr
 
 ---
 
-## Future Integrations
+## Future Integration with AI Game Director Studio
 
 The trained classifier and TF-IDF vectorizer are saved as reusable artifacts (`review_classifier.pkl`, `tfidf_vectorizer.pkl`, `label_mapping.json`). Any system that can pass review text to the model can receive a binary sentiment signal without retraining.
 
@@ -195,7 +191,7 @@ The evaluation framework developed here, including macro F1 as the primary crite
 
 Bellamy, R. K. E., Dey, K., Hind, M., Hoffman, S. C., Houde, S., Kannan, K., Lohia, P., Martino, J., Mehta, S., Mojsilovic, A., Nagar, S., Ramamurthy, K. N., Richards, J., Saha, D., Sattigeri, P., Singh, M., Varshney, K. R., & Zhang, Y. (2019). AI Fairness 360: An extensible toolkit for detecting and mitigating algorithmic bias. *IBM Journal of Research and Development, 63*(4/5), 4:1-4:15.
 
-forgemaster. (2021). *Steam reviews dataset* [Data set]. Kaggle. https://www.kaggle.com/datasets/forgemaster/steam-reviews-dataset
+forgemaster. (2021). *Steam reviews dataset* [Data set]. Kaggle. [https://www.kaggle.com/datasets/forgemaster/steam-reviews-dataset](https://www.kaggle.com/datasets/forgemaster/steam-reviews-dataset)
 
 Hastie, T., Tibshirani, R., & Friedman, J. (2009). *The elements of statistical learning: Data mining, inference, and prediction* (2nd ed.). Springer.
 
