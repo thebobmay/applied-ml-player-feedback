@@ -55,8 +55,8 @@ Four candidate models were trained and compared on the same 80/20 stratified tra
 
 | Model               | Accuracy | Precision (macro) | Recall (macro) | F1 (macro) | Training Time |
 | ------------------- | -------- | ----------------- | -------------- | ---------- | ------------- |
-| Linear SVM          | 0.9059   | 0.8064            | 0.8470         | **0.8245** | 1.87s         |
-| Logistic Regression | 0.8936   | 0.7847            | 0.8717         | 0.8175     | 0.74s         |
+| Linear SVM          | 0.9059   | 0.8064            | 0.8470         | **0.8245** | 1.92s         |
+| Logistic Regression | 0.8936   | 0.7847            | 0.8717         | 0.8175     | 0.80s         |
 | Complement NB       | 0.8889   | 0.7764            | 0.8230         | 0.7965     | 0.03s         |
 | Multinomial NB      | 0.8789   | 0.8847            | 0.5995         | 0.6322     | 0.03s         |
 
