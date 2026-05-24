@@ -3,7 +3,6 @@
 Udacity AI Masters Capstone - Project 3: Applied Machine Learning
 
 **Student:** Robert Mayfield
-**Series:** AI Game Director Studio (Project 3 of 7)
 
 ---
 
