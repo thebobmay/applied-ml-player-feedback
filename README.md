@@ -49,11 +49,17 @@ outputs/model_artifacts/                 saved model and vectorizer for Project 
 ## How to Run
 
 1. Create and activate a Python environment (Python 3.13.3 was used for this project):
-  ```
+   ```
    python -m venv .venv
-  ```
+   ```
    On Windows:
+   ```
+   .venv\Scripts\activate
+   ```
    On macOS or Linux:
+   ```
+   source .venv/bin/activate
+   ```
 2. Install dependencies:
   ```
    pip install -r requirements.txt
